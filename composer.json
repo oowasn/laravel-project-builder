@@ -13,6 +13,7 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^7.0.1"
-    }
+        "tcg/voyager": "^7.0.1"
+    },
+    "minimum-stability": "dev"
 }
