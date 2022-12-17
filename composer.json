@@ -12,8 +12,5 @@
             "email": "oowashina@gmail.com"
         }
     ],
-    "require": {
-        "tcg/voyager": "^7.0.1"
-    },
     "minimum-stability": "dev"
 }
