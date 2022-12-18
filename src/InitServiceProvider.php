@@ -3,7 +3,7 @@
 namespace Zdslab\Laravelinit;
 
 use Illuminate\Support\ServiceProvider;
-use Zdslab\Laravelinit\Commands\InitProject;
+use Zdslab\Laravelinit\Console\InitProject;
 
 class InitServiceProvider extends ServiceProvider
 {
