@@ -1,7 +1,5 @@
 <?php
 
-    use App\Models\Keyword;
-    use App\Models\Page;
     use Illuminate\Database\Migrations\Migration;
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
@@ -17,8 +15,8 @@
         {
             Schema::create('keyword_page', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Page::class);
-                $table->foreignIdFor(Keyword::class);
+                $table->foreignId('page_id');
+                $table->foreignId('keyword_id');
                 $table->timestamps();
             });
         }

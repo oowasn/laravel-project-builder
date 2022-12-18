@@ -3,7 +3,6 @@
     use Illuminate\Database\Migrations\Migration;
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
-    use App\Models\Template;
 
     class CreatePagesTable extends Migration
     {
@@ -16,7 +15,7 @@
         {
             Schema::create('pages', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Template::class);
+                $table->foreignId('template_id');
                 $table->string('slug')->unique('pageSlug');
                 $table->string('name');
                 $table->string('title');

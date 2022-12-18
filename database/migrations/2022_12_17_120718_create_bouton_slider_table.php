@@ -3,8 +3,6 @@
     use Illuminate\Database\Migrations\Migration;
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
-    use App\Models\Bouton;
-    use App\Models\Slider;
 
     class CreateBoutonSliderTable extends Migration
     {
@@ -17,8 +15,8 @@
         {
             Schema::create('bouton_slider', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Bouton::class);
-                $table->foreignIdFor(Slider::class);
+                $table->foreignId('bouton_id');
+                $table->foreignIdFor('slider_id');
                 $table->timestamps();
             });
         }
