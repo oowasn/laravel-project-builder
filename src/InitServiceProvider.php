@@ -3,6 +3,7 @@
 namespace Zdslab\Laravelinit;
 
 use Illuminate\Support\ServiceProvider;
+use Zdslab\Laravelinit\Commands\InitProject;
 
 class InitServiceProvider extends ServiceProvider
 {
@@ -12,6 +13,12 @@ class InitServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot() {
+        // Register the command if we are using the application via the CLI
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InitProject::class,
+            ]);
+        }
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../publishable/resources/views', 'init');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
