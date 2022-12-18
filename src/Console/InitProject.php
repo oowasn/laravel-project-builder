@@ -1,6 +1,6 @@
 <?php
 
-namespace Zdslab\Laravelinit\Commands;
+namespace Zdslab\Laravelinit\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
