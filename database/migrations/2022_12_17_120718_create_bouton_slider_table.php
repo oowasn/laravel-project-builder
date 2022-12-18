@@ -16,7 +16,7 @@
             Schema::create('bouton_slider', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('bouton_id');
-                $table->foreignIdFor('slider_id');
+                $table->foreignId('slider_id');
                 $table->timestamps();
             });
         }
