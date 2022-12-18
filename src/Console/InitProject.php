@@ -53,19 +53,19 @@ class InitProject extends Command
         ]);
 
 
-        //Création des models
-        $this->initModels();
-        // Migration creation
-        $this->initMigrations();
-        //Voyager install
-        $this->initVoyager();
-        //Creation des controllers
-        $this->initController();
-        //Views
-        $this->initViews();
-        //init Bread
-        $this->initBread();
-        $this->updateFile($filesystem);
+        // //Création des models
+        // $this->initModels();
+        // // Migration creation
+        // $this->initMigrations();
+        // //Voyager install
+        // $this->initVoyager();
+        // //Creation des controllers
+        // $this->initController();
+        // //Views
+        // $this->initViews();
+        // //init Bread
+        // $this->initBread();
+        // $this->updateFile($filesystem);
         return 0;
     }
     public function initData()
@@ -373,11 +373,11 @@ class InitProject extends Command
     }
     protected function createLoginImage()
     {
-        $loginDir = "public/login-assets";
-        if (!is_dir($loginDir)) :
-            mkdir($loginDir, 0775, true);
-        endif;
-        file_put_contents("$loginDir/vz-logo.png", $binary);
-        file_put_contents("$loginDir/bg.png", $binary);
+        // $loginDir = "public/login-assets";
+        // if (!is_dir($loginDir)) :
+        //     mkdir($loginDir, 0775, true);
+        // endif;
+        // file_put_contents("$loginDir/vz-logo.png", $binary);
+        // file_put_contents("$loginDir/bg.png", $binary);
     }
 }
