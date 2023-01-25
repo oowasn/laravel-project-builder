@@ -1,5 +1,5 @@
 {
-    "name": "zdslab/laravelinit",
+    "name": "geeksceo/laravelinit",
     "description": "Begin usualy a Laravel project",
     "autoload": {
         "psr-4": {
