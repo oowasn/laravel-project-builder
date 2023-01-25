@@ -1,21 +1,22 @@
 <?php
 
-    namespace Zdslab\Laravelinit\Models;
+namespace Zdslab\Laravelinit\Models;
 
-    use Illuminate\Database\Eloquent\Factories\HasFactory;
-    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-    class Page extends Model
-    {
-        use HasFactory;
+class Page extends Model {
+    use HasFactory;
 
-        public  function sections(){
-            return $this->belongsToMany(Section::class, 'page_sections');
-        }
-        public function keywords(){
-            return $this->belongsToMany(Keyword::class);
-        }
-        public function template(){
-            return $this->belongsTo(Template::class);
-        }
+    public  function sections(){
+        return $this->belongsToMany(Section::class, 'page_sections');
     }
+
+    public function keywords(){
+        return $this->belongsToMany(Keyword::class);
+    }
+
+    public function template(){
+        return $this->belongsTo(Template::class);
+    }
+}

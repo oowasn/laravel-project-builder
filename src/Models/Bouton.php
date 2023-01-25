@@ -1,16 +1,15 @@
 <?php
 
-    namespace Zdslab\Laravelinit\Models;
+namespace Zdslab\Laravelinit\Models;
 
-    use App\Models\Swiper;
-    use Illuminate\Database\Eloquent\Model;
-    use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Swiper;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-    class Bouton extends Model
-    {
-        use HasFactory;
+class Bouton extends Model {
+    use HasFactory;
 
-        public function sliders(){
-            return $this->belongsToMany(Slider::class);
-        }
+    public function sliders(){
+        return $this->belongsToMany(Slider::class);
     }
+}

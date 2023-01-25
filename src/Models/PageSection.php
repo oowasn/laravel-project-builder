@@ -1,11 +1,11 @@
 <?php
 
-    namespace Zdslab\Laravelinit\Models;
+namespace Zdslab\Laravelinit\Models;
 
-    use Illuminate\Database\Eloquent\Factories\HasFactory;
-    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-    class PageSection extends Model
-    {
-        use HasFactory;
-    }
+class PageSection extends Model
+{
+    use HasFactory;
+}
