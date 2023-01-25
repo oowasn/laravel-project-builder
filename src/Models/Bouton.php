@@ -1,8 +1,8 @@
 <?php
 
-namespace Zdslab\Laravelinit\Models;
+namespace ZDSLab\Init\Models;
 
-use App\Models\Swiper;
+// use App\Models\Swiper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Zdslab\Laravelinit\Models;
+namespace ZDSLab\Init\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
