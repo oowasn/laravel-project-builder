@@ -23,5 +23,12 @@
     "minimum-stability": "dev",
     "require-dev": {
         "orchestra/testbench": "^7.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ZDSLab\\Init\\InitServiceProvider"
+            ]
+        }
     }
 }
