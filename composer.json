@@ -20,5 +20,8 @@
             "email": "oowashina@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require-dev": {
+        "orchestra/testbench": "^7.0"
+    }
 }
