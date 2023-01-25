@@ -3,7 +3,7 @@
     "description": "Begin usualy a Laravel project",
     "autoload": {
         "psr-4": {
-            "Zdslab\\Laravelinit\\": "src/"
+            "ZDSLab\\Init\\": "src/"
         }
     },
     "authors": [

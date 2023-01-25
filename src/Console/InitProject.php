@@ -25,7 +25,7 @@ class InitProject extends Command
      *
      * @var string
      */
-    protected $description = 'Initialiser le projet';
+    protected $description = 'Initialize project';
     public $dataTypes = [];
     public $dataRows = [];
     public $relationShip = [];
