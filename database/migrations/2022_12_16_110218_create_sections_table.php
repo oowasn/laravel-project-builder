@@ -16,7 +16,7 @@
             Schema::create('sections', function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->unique('sectionName');
-                $table->string('vue');
+                $table->string('view');
                 $table->string('title')->nullable();
                 $table->string('subtitle')->nullable();
                 $table->text('description')->nullable();

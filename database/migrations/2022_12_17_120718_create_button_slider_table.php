@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateBoutonsTable extends Migration
+    class CreateButtonSliderTable extends Migration
     {
         /**
          * Run the migrations.
@@ -13,13 +13,10 @@
          */
         public function up()
         {
-            Schema::create('boutons', function (Blueprint $table) {
+            Schema::create('button_slider', function (Blueprint $table) {
                 $table->id();
-                $table->string('libelle');
-                $table->string('url')->nullable();
-                $table->string('route')->nullable();
-                $table->string('route_option')->nullable();
-                $table->string('style')->nullable();
+                $table->foreignId('button_id');
+                $table->foreignId('slider_id');
                 $table->timestamps();
             });
         }
@@ -31,6 +28,6 @@
          */
         public function down()
         {
-            Schema::dropIfExists('boutons');
+            Schema::dropIfExists('button_slider');
         }
-    };
+    }

@@ -25,10 +25,11 @@ class InitServiceProvider extends ServiceProvider
               ], 'config'
             );
         }
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         /* 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/../publishable/resources/views', 'init');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations'); */
+        $this->loadViewsFrom(__DIR__.'/../publishable/resources/views', 'init'); */
     }
 
     public function register() {

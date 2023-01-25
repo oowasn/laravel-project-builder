@@ -16,8 +16,8 @@
             Schema::create('sliders', function (Blueprint $table) {
                 $table->id();
                 $table->string('img');
-                $table->string('titre');
-                $table->string('soustitre')->nullable();
+                $table->string('title');
+                $table->string('subtitle')->nullable();
                 $table->text('detail')->nullable();
                 $table->boolean('active')->default(true);
                 $table->integer('rang')->nullable();
