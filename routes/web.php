@@ -1,6 +1,6 @@
 <?php
 
-use Zdslab\Laravelinit\Controllers\{
+use ZDSLab\Init\Http\Controllers\{
     DataController,
     PageSectionOrderController,
 };
