@@ -1,6 +1,7 @@
 {
     "name": "geeksceo/laravelinit",
     "description": "Begin usualy a Laravel project",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "ZDSLab\\Init\\": "src/"
@@ -20,7 +21,7 @@
             "email": "oowashina@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "tcg/voyager": "1.6.x-dev"
     },
