@@ -21,6 +21,9 @@
         }
     ],
     "minimum-stability": "dev",
+    "require": {
+        "tcg/voyager": "1.6.x-dev"
+    },
     "require-dev": {
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "9.6.x-dev"

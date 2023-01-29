@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model {
     use HasFactory;
 
-    public function boutons(){
-        return $this->belongsToMany(Bouton::class);
+    public function buttons(){
+        return $this->belongsToMany(Button::class);
     }
 }
