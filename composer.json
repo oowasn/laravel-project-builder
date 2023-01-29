@@ -21,6 +21,7 @@
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable" : true,
     "require": {
         "tcg/voyager": "1.6.x-dev"
     },
