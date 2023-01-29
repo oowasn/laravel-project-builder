@@ -1,6 +1,6 @@
 <?php
 
-    namespace ZDSLab\Init\Controllers;
+    namespace ZDSLab\Init\Http\Controllers;
 
     use App\Models\Page;
     use App\Models\Section;

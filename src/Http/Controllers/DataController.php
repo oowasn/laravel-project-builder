@@ -1,6 +1,6 @@
 <?php
 
-namespace ZDSLab\Init\Controllers;
+namespace ZDSLab\Init\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -8,7 +8,6 @@ use Illuminate\Support\Arr;
 use ZDSLab\Init\Models\{
     Slider,
     Page,
-    Template,
 };
 use App\Models\User;
 

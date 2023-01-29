@@ -1,13 +1,10 @@
 <?php
 
 use Zdslab\Laravelinit\Controllers\{
-    InspirationController,
     DataController,
     PageSectionOrderController,
 };
 use Illuminate\Support\Facades\Route;
-
-Route::get('inspire', InspirationController::class);
 
 Route::get('/index', [
     DataController::class, 'index'
