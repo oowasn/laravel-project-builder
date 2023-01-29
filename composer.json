@@ -20,8 +20,7 @@
             "email": "oowashina@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable" : true,
+    "minimum-stability": "stable",
     "require": {
         "tcg/voyager": "1.6.x-dev"
     },
