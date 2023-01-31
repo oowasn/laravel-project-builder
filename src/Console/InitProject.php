@@ -101,7 +101,7 @@ class InitProject extends Command
         $scan = scandir($source);
         foreach($scan as $file) {
             if (!is_dir("$source/$file")) {
-                copy(__DIR__."$source/$file", base_path("$destination/$file"));
+                copy("$source/$file", "$destination/$file");
             }
         }
 
