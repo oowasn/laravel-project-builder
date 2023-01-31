@@ -304,8 +304,8 @@ class InitProject extends Command {
                     copy("$source/$file", "$destination/$file");
                 } else {
                     if( 
-                        !is_dir($destination/$file) 
-                    ) mkdir($destination/$file, 775, true);
+                        !is_dir("$destination/$file") 
+                    ) mkdir("$destination/$file", 775, true);
                     $this->putFileInFolder(
                         "$source/$file", "$destination/$file"
                     );
