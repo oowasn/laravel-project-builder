@@ -211,12 +211,12 @@ class InitProject extends Command {
         $tid = DB::table('templates')
             ->insertGetId([
                 'name' => "Master",
-                'vue' => "master"
+                'view' => "master"
             ]);
         $sid = DB::table('sections')
             ->insertGetId([
                 'name' => "About",
-                'vue' => "about",
+                'view' => "about",
                 "title" => "A propos de Woody Builder"
             ]);
 
