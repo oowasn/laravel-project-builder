@@ -250,7 +250,7 @@ class InitProject extends Command {
             $confirmPassword = $this->secret('Password confirmation');
 
             if ($password == $confirmPassword) {
-                $newUser = new User::create([
+                $newUser = User::create([
                     'name' => $name,
                     'role_id' => 1,
                     'email' => $email,
