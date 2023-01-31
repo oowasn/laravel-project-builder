@@ -42,24 +42,29 @@ class InitProject extends Command
         parent::__construct();
     }
 
-
     public function handle()
     {
         $this->info('Installing ZDSLab InitPackage...');
 
-        $this->info('Publishing configuration...');
+        $this->call('voyager:install');
+        
+        $this->info('Set Application route to ZDS routes into routes/web.php');
+        
+        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
 
-        if (! $this->configExists('init.php')) {
-            $this->publishConfiguration();
-            $this->info('Published configuration');
-        } else {
-            if ($this->shouldOverwriteConfig()) {
-                $this->info('Overwriting configuration file...');
-                $this->publishConfiguration($force = true);
-            } else {
-                $this->info('Existing configuration was not overwritten');
-            }
-        }
+        $this->info('Pubish ZDS Controllers and helpers');
+
+        $this->putFileInFolder(
+            __DIR__.'/../../stubs/default/Http/Controllers', 
+            app_path('Http/Controllers')
+        );
+
+        // $this->putFileInFolder(
+        //     __DIR__.'/../../stubs/default/Http/Helpers', 
+        //     app_path('Http/Controllers')
+        // );
+
+        $this->info('Publishing configuration...');
 
         $this->info('Installed ZDSLab InitPackage');
     }
@@ -89,6 +94,26 @@ class InitProject extends Command
         }
 
        $this->call('vendor:publish', $params);
+    }
+
+    private function putFileInFolder($source, $destination)
+    {
+        $scan = scandir($source);
+        foreach($scan as $file) {
+            if (!is_dir("$source/$file")) {
+                copy(__DIR__."$source/$file", base_path("$destination/$file"));
+            }
+        }
+
+        // foreach ($files as $name => $content) :
+        //     $chemin =  $path . $name;
+        //     $path_info = pathinfo($chemin);
+        //     $dir = $path_info['dirname'];
+        //     if (!file_exists($dir)) :
+        //         mkdir($dir, 0775, true);
+        //     endif;
+        //     file_put_contents($chemin, trim($content));
+        // endforeach;
     }
 
 }
