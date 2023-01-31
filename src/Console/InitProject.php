@@ -246,12 +246,12 @@ class InitProject extends Command {
             $confirmPassword = $this->secret('Password confirmation');
 
             if ($password == $confirmPassword) {
-                $newUser = User::create([
-                    'name' => $name,
-                    'role_id' => 1,
-                    'email' => $email,
-                    'password' => Hash::make($password),
-                ]);
+                $newUser = new User;
+                $newUser->name = $name;
+                $newUser->role_id = 1;
+                $newUser->email = $email;
+                $newUser->password = Hash::make($password); //bcrypt($password) ;
+                $newUser->save();
                 $this->info('Successfully created user');
             } else {
                 $this->info('The entered passwords do not match.');
