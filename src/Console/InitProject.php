@@ -34,10 +34,6 @@ class InitProject extends Command {
      */
     protected $description = 'Initialize project';
 
-    public $dataTypes = array();
-    public $dataRows = array();
-    public $relationShip = array();
-
     /**
      * Create a new command instance.
      *
@@ -263,7 +259,6 @@ class InitProject extends Command {
         }
     }
 
-        // dd($data['voyager']['data_types']);
     /**
      * [dataType description].
      *
@@ -272,10 +267,25 @@ class InitProject extends Command {
      *
      * @return [type] [description]
      */
-
     protected function dataType($field, $for)
     {
         return DataType::firstOrNew([$field => $for]);
+    }
+
+    /**
+     * [dataRow description].
+     *
+     * @param [type] $type  [description]
+     * @param [type] $field [description]
+     *
+     * @return [type] [description]
+     */
+    protected function dataRow($type, $field)
+    {
+        return DataRow::firstOrNew([
+            'data_type_id' => $type->id,
+            'field'        => $field,
+        ]);
     }
 
     private function putFileInFolder($source, $destination)
