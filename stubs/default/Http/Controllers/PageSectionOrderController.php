@@ -1,26 +1,26 @@
 <?php
 
-    namespace ZDSLab\Init\Http\Controllers;
+namespace App\Http\Http;
 
-    use App\Models\Page;
-    use App\Models\Section;
-    use Illuminate\Http\Request;
-    use TCG\Voyager\Http\Controllers\VoyagerBaseController;
-    use TCG\Voyager\Facades\Voyager;
+use ZDSLab\Init\Models\{
+    Page,
+    Section
+};
+use Illuminate\Http\Request;
+use TCG\Voyager\Http\Controllers\VoyagerBaseController;
+use TCG\Voyager\Facades\Voyager;
 
-    class PageSectionOrderController extends VoyagerBaseController
+class PageSectionOrderController extends VoyagerBaseController {
+
+    /**
+     * Order BREAD items.
+     *
+     * @param string $table
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function order(Request $request, $page_id = 0)
     {
-        //
-
-        /**
-         * Order BREAD items.
-         *
-         * @param string $table
-         *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function order(Request $request, $page_id = 0)
-        {
             $slug = "page-sections";
 
             $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
@@ -76,6 +76,6 @@
                 'lesSections',
                 'lesPages'
             ));
-        }
-
     }
+
+}

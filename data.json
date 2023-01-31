@@ -2,12 +2,12 @@
     "voyager": {
         "data_types": [
             {
-                "name": "boutons",
-                "slug": "boutons",
+                "name": "buttons",
+                "slug": "buttons",
                 "display_name_singular": "Bouton",
                 "display_name_plural": "Boutons",
                 "icon": "voyager-medal-rank-star",
-                "model_name": "App\\Models\\Bouton",
+                "model_name": "App\\Models\\Button",
                 "description": "",
                 "generate_permissions": 1,
                 "server_side": 0,
