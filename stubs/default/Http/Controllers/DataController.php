@@ -43,7 +43,7 @@ class DataController extends BaseController
             $page = $query->where('slug', 'home')->get()->toArray()[0] ;
         endif;
 
-        $data['template'] = $page['template']['vue'] ?? 'master';
+        $data['template'] = $page['template']['view'] ?? 'master';
         $data['pageName'] = $page['name'] ?? env('APP_NAME');
         $data['pageTitle'] = $page['title'] ?? NULL;
         $data['page'] = $page;
@@ -54,12 +54,12 @@ class DataController extends BaseController
         $data['slug'] = $slug;
 
         foreach($lesSections AS $sect):
-            $data['tabSection'][] = $sect['vue'];
+            $data['tabSection'][] = $sect['view'];
         endforeach;
 
         $data['tabSection'] = $page['sections'] ?? [];
         $data['data'] = self::getData($data['tabSection']);
-        $data['tabSection'] = Arr::keyBy($data['tabSection'], 'vue');
+        $data['tabSection'] = Arr::keyBy($data['tabSection'], 'view');
         
         return view('page', $data);
     }
@@ -72,9 +72,9 @@ class DataController extends BaseController
     public static function getData(array $sections): array {
         $data = [];
         foreach($sections AS $section):
-            $method  = "get".ucfirst($section['vue']);
+            $method  = "get".ucfirst($section['view']);
             if(method_exists(self::class, $method)):
-                $data[$section['vue']] = call_user_func("self::$method") ;
+                $data[$section['view']] = call_user_func("self::$method") ;
             endif;
         endforeach;
         return $data;

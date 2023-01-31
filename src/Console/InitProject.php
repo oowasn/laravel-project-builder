@@ -61,6 +61,13 @@ class InitProject extends Command {
             app_path('Http/Controllers')
         );
 
+        $this->info('Pubish ZDS resources files');
+
+        $this->putFileInFolder(
+            __DIR__.'/../../resources/views/', 
+            app_path('resources/views')
+        );
+
         $this->initBread();
         // $this->putFileInFolder(
         //     __DIR__.'/../../stubs/default/Http/Helpers', 
@@ -294,6 +301,10 @@ class InitProject extends Command {
         foreach($scan as $file) {
             if (!is_dir("$source/$file")) {
                 copy("$source/$file", "$destination/$file");
+            } else {
+                $this->putFileInFolder(
+                    "$source/$file", "$destination/$file"
+                );
             }
         }
 
