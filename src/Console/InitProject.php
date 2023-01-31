@@ -65,7 +65,7 @@ class InitProject extends Command {
 
         $this->putFileInFolder(
             __DIR__.'/../../resources/views/', 
-            app_path('resources/views')
+            base_path('resources/views')
         );
 
         $this->initBread();
@@ -299,12 +299,17 @@ class InitProject extends Command {
     {
         $scan = scandir($source);
         foreach($scan as $file) {
-            if (!is_dir("$source/$file")) {
-                copy("$source/$file", "$destination/$file");
-            } else {
-                $this->putFileInFolder(
-                    "$source/$file", "$destination/$file"
-                );
+            if( !in_array($file, ['.', '..']) ) {
+                if (!is_dir("$source/$file")) {
+                    copy("$source/$file", "$destination/$file");
+                } else {
+                    if( 
+                        !is_dir($destination/$file) 
+                    ) mkdir($destination/$file, 775, true);
+                    $this->putFileInFolder(
+                        "$source/$file", "$destination/$file"
+                    );
+                }
             }
         }
 
