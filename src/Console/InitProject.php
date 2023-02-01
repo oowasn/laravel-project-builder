@@ -311,12 +311,17 @@ class InitProject extends Command {
         $scan = scandir($source);
         foreach($scan as $file) {
             if( !in_array($file, ['.', '..']) ) {
+
+                // Create destination folder if not exists [recursivity]
+                if( 
+                    !is_dir($destination) 
+                ) mkdir("$destination", 0775, true);
+                
+                // If is file push it
+                // else enter in folder and copy all files containing
                 if (!is_dir("$source/$file")) {
                     copy("$source/$file", "$destination/$file");
                 } else {
-                    if( 
-                        !is_dir("$destination/$file") 
-                    ) mkdir("$destination/$file", 0775, true);
                     $this->putFileInFolder(
                         "$source/$file", "$destination/$file"
                     );
