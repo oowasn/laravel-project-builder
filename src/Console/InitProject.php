@@ -54,11 +54,18 @@ class InitProject extends Command {
         
         copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
 
-        $this->info('Pubish ZDS Controllers and helpers');
+        $this->info('Pubish ZDS Controllers');
 
         $this->putFileInFolder(
             __DIR__.'/../../stubs/default/Http/Controllers', 
             app_path('Http/Controllers')
+        );
+
+        $this->info('Pubish ZDS Helpers');
+
+        $this->putFileInFolder(
+            __DIR__.'/../../stubs/default/Helpers', 
+            app_path('Helpers')
         );
 
         $this->info('Pubish ZDS resources files');
@@ -68,12 +75,15 @@ class InitProject extends Command {
             base_path('resources/views')
         );
 
+        $this->info('Pubish ZDS models files');
+
+        $this->putFileInFolder(
+            __DIR__.'/../../stubs/default/Models/', 
+            app_path('Models')
+        );
+
         $this->initBread();
-        // $this->putFileInFolder(
-        //     __DIR__.'/../../stubs/default/Http/Helpers', 
-        //     app_path('Http/Controllers')
-        // );
-            
+                    
         // Create new user with admin privilege
         $create = $this->ask('Do you want to create a user ? (Yes => 1 | No => 0)');
         $this->createUser(boolval($create));
@@ -188,7 +198,7 @@ class InitProject extends Command {
                 }
             }
 
-            if( !in_array($current_data_type['slug'], $withoutMenus) ) {
+            if( !in_array($current_data_type['name'], $withoutMenus) ) {
 
                 $menuItem = MenuItem::firstOrNew([
                     'menu_id' => $menu->id,
