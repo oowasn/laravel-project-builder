@@ -1,6 +1,7 @@
 <?php
 
-namespace ZDSLab\Init\Models;
+namespace App\Models;
+
 
 // use App\Models\Swiper;
 use Illuminate\Database\Eloquent\Model;

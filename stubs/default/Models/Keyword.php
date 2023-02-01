@@ -1,6 +1,6 @@
 <?php
 
-namespace ZDSLab\Init\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

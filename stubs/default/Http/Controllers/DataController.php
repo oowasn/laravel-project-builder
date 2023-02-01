@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Arr;
-use ZDSLab\Init\Models\{
+use App\Models\{
+    User,
     Slider,
     Page,
 };
-use App\Models\User;
 
 class DataController extends BaseController
 {

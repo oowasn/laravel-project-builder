@@ -161,7 +161,7 @@ class InitProject extends Command {
 
         // save `data_types` locate in `data.json`  
         foreach ($data['voyager']['data_types'] as $current_data_type) {
-            // `current_data_type` content actual dataType value
+            // `current_data_type` contents actual dataType value
 
             // check if `data_type` exists else -> create new
             $dataType = $this->dataType('slug', $current_data_type['slug']);
@@ -219,9 +219,29 @@ class InitProject extends Command {
                 }
             }
 
-            Permission::generateFor($current_data_type['name']);
+            $this->permission($current_data_type['name']);
         }
 
+    }
+
+    private function permission($name)
+    {
+        $bread = ['browse', 'read', 'edit', 'add', 'delete'];
+        $date = date('Y-m-d H:i:s');
+        foreach ($bread as $breadItem) {
+            $pid = DB::table('permissions')
+                ->insertGetId([
+                    "key" => $breadItem . "_" . $name,
+                    "table_name" => $name,
+                    'created_at' => $date,
+                    'updated_at' => $date
+                ]);
+            DB::table('permission_role')
+                ->insert([
+                    'permission_id' => $pid,
+                    'role_id' => 1,
+                ]);
+        }
     }
 
     public function makeFirstPage()
