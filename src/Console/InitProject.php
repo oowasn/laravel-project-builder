@@ -140,7 +140,7 @@ class InitProject extends Command {
                 'icon_class' => 'voyager-activity',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 2,
+                'order'      => max(MenuItem::where('parent_id', NULL)->get()->pluck('order')->toArray()) + 1,
             ])->save();
         }
 
