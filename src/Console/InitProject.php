@@ -54,10 +54,10 @@ class InitProject extends Command {
         
         copy(__DIR__.'/../../stubs/default/routes/init.php', base_path('routes/init.php'));
         $routes_contents = $filesystem->get(base_path('routes/web.php'));
-        if (false === strpos($routes_contents, 'require __DIR__.\'/init.php\'')) {
+        if (false === strpos($routes_contents, 'require __DIR__.\'/init.php\';')) {
             $filesystem->append(
                 base_path('routes/web.php'),
-                PHP_EOL.PHP_EOL.'// [Init]'.PHP_EOL.'require __DIR__.\'/init.php\''
+                PHP_EOL.PHP_EOL.'// [Init]'.PHP_EOL.'require __DIR__.\'/init.php\';'
             );
         }
 
@@ -74,6 +74,18 @@ class InitProject extends Command {
             __DIR__.'/../../stubs/default/Helpers',
             app_path('Helpers')
         );
+
+        // Recuperer le fichier composer.json
+        $json = json_decode(base_path('composer.json'), true);
+        // Ajouter dans autoload
+        // "files": [
+        //     "app/Helpers/helpers.php"
+        // ]
+        $json['autoload']['files'] = ["app/Helpers/helpers.php"];
+        // Mettre a jour le contenu du fichier composer.json
+        // Executer la commande `composer dump-autoload`
+        file_put_contents(base_path('composer.json'), $json);
+        
 
         $this->info('Pubish ZDS resources files');
 
