@@ -52,7 +52,7 @@ class InitProject extends Command {
         
         $this->info('Set Application route to ZDS routes into routes/web.php');
         
-        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/init.php'));
+        copy(__DIR__.'/../../stubs/default/routes/init.php', base_path('routes/init.php'));
         $routes_contents = $filesystem->get(base_path('routes/web.php'));
         if (false === strpos($routes_contents, 'require __DIR__.\'/init.php\'')) {
             $filesystem->append(
@@ -71,7 +71,7 @@ class InitProject extends Command {
         $this->info('Pubish ZDS Helpers');
 
         $this->putFileInFolder(
-            __DIR__.'/../../stubs/default/Helpers', 
+            __DIR__.'/../../stubs/default/Helpers',
             app_path('Helpers')
         );
 

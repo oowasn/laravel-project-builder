@@ -40,5 +40,10 @@
                 "ZDSLab\\Init\\InitServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-package-install": [
+            "composer dump-autoload"
+        ]
     }
 }
