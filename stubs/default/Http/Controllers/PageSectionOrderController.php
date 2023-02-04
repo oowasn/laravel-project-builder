@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Http;
+namespace App\Http\Controllers;
 
-use ZDSLab\Init\Models\{
+use App\Models\{
     Page,
     Section
 };

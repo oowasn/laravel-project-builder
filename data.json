@@ -145,7 +145,7 @@
                         "order": 2
                     },
                     {
-                        "field": "vue",
+                        "field": "view",
                         "type": "text",
                         "display_name": "Vue",
                         "required": 1,
@@ -290,7 +290,7 @@
                         "order": 2
                     },
                     {
-                        "field": "vue",
+                        "field": "view",
                         "type": "text",
                         "display_name": "Vue",
                         "required": 1,

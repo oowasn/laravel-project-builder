@@ -44,7 +44,7 @@ class InitProject extends Command {
         parent::__construct();
     }
 
-    public function handle()
+    public function handle(Filesystem $filesystem)
     {
         $this->info('Installing ZDSLab InitPackage...');
 
@@ -52,7 +52,14 @@ class InitProject extends Command {
         
         $this->info('Set Application route to ZDS routes into routes/web.php');
         
-        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/web.php'));
+        copy(__DIR__.'/../../stubs/default/routes/web.php', base_path('routes/init.php'));
+        $routes_contents = $filesystem->get(base_path('routes/web.php'));
+        if (false === strpos($routes_contents, 'require __DIR__.\'/init.php\'')) {
+            $filesystem->append(
+                base_path('routes/web.php'),
+                PHP_EOL.PHP_EOL.'// [Init]'.PHP_EOL.'require __DIR__.\'/init.php\''
+            );
+        }
 
         $this->info('Pubish ZDS Controllers');
 
