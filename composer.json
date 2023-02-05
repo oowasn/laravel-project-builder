@@ -1,5 +1,5 @@
 {
-    "name": "geeksceo/laravelinit",
+    "name": "geeksceo/laravel-project-builder",
     "description": "Begin usualy a Laravel project",
     "license": "MIT",
     "version": "2.0.0",
