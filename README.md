@@ -1,1 +1,1 @@
-# laravel-project-init
+# laravel-project-builder
