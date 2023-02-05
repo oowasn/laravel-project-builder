@@ -84,7 +84,7 @@ class InitProject extends Command {
         $json['autoload']['files'] = ["app/Helpers/helpers.php"];
         // Mettre a jour le contenu du fichier composer.json
         // Executer la commande `composer dump-autoload`
-        file_put_contents(base_path('composer.json'), json_encode($json) );
+        // file_put_contents(base_path('composer.json'), json_encode($json) );
         
 
         $this->info('Pubish ZDS resources files');
