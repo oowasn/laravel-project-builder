@@ -93,6 +93,8 @@ class InitProject extends Command {
         // Executer la commande `composer dump-autoload`
         file_put_contents(base_path('composer.json'), json_encode($json, JSON_PRETTY_PRINT) );
 
+        shell_exec('composer dump-autoload');
+
         $this->info('Pubish ZDS resources files');
 
         $this->putContentInFolder(
