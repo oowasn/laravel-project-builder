@@ -364,7 +364,7 @@ class InitProject extends Command {
                 // else enter in folder and copy all files containing
                 if (!is_dir("$from/$file")) {
                     // DON'T OVEWRITE FILE
-                    if( file_exists("$from/$file") )
+                    if( file_exists("$to/$file") )
                         $this->info("[CHECK...] $file already exists...");
                     else 
                         copy("$from/$file", "$to/$file");
