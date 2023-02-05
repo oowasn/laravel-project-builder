@@ -52,31 +52,38 @@ class InitProject extends Command {
         
         $this->info('Set Application route to ZDS routes into routes/web.php');
         
-        copy(__DIR__.'/../../stubs/default/routes/init.php', base_path('routes/init.php'));
-        $routes_contents = $filesystem->get(base_path('routes/web.php'));
-        if (false === strpos($routes_contents, 'require __DIR__.\'/init.php\';')) {
-            $filesystem->append(
-                base_path('routes/web.php'),
-                PHP_EOL.PHP_EOL.'// [Init]'.PHP_EOL.'require __DIR__.\'/init.php\';'
-            );
+        if($filesystem->exists(base_path('routes/web.php')))
+            $this->info('[ROUTE] file routes/init.php already exists...');
+        else {
+            copy(__DIR__.'/../../stubs/default/routes/init.php', base_path('routes/init.php'));
+            $routes_contents = $filesystem->get(base_path('routes/web.php'));
+            $check = "require __DIR__.'/init.php';";
+            if (false === strpos($routes_contents, $check)) {
+                $filesystem->append(
+                    base_path('routes/web.php'),
+                    PHP_EOL.PHP_EOL.'// [Init]'.PHP_EOL.$check
+                );
+            }
         }
 
         $this->info('Pubish ZDS Controllers');
 
-        $this->putFileInFolder(
+        $this->putContentInFolder(
             __DIR__.'/../../stubs/default/Http/Controllers', 
             app_path('Http/Controllers')
         );
 
         $this->info('Pubish ZDS Helpers');
 
-        $this->putFileInFolder(
+        $this->putContentInFolder(
             __DIR__.'/../../stubs/default/Helpers',
             app_path('Helpers')
         );
 
         // Recuperer le fichier composer.json
-        $json = json_decode(base_path('composer.json'), true);
+        $json = json_decode(
+            file_get_contents(base_path('composer.json')), true
+        );
         // Ajouter dans autoload
         // "files": [
         //     "app/Helpers/helpers.php"
@@ -84,19 +91,19 @@ class InitProject extends Command {
         $json['autoload']['files'] = ["app/Helpers/helpers.php"];
         // Mettre a jour le contenu du fichier composer.json
         // Executer la commande `composer dump-autoload`
-        // file_put_contents(base_path('composer.json'), json_encode($json) );
+        file_put_contents(base_path('composer.json'), json_encode($json, JSON_PRETTY_PRINT) );
         
 
         $this->info('Pubish ZDS resources files');
 
-        $this->putFileInFolder(
+        $this->putContentInFolder(
             __DIR__.'/../../resources/views/', 
             base_path('resources/views')
         );
 
         $this->info('Pubish ZDS models files');
 
-        $this->putFileInFolder(
+        $this->putContentInFolder(
             __DIR__.'/../../stubs/default/Models/', 
             app_path('Models')
         );
@@ -114,7 +121,7 @@ class InitProject extends Command {
             !is_dir( base_path($loginDir) )
         ) mkdir($loginDir, 0775, true);
 
-        $this->putFileInFolder(
+        $this->putContentInFolder(
             __DIR__.'/../../publishable/login-assets', base_path($loginDir)
         );
 
@@ -345,24 +352,25 @@ class InitProject extends Command {
         ]);
     }
 
-    private function putFileInFolder($source, $destination)
+    private function putContentInFolder($from, $to)
     {
-        $scan = scandir($source);
+        $scan = scandir($from);
         foreach($scan as $file) {
             if( !in_array($file, ['.', '..']) ) {
-
                 // Create destination folder if not exists [recursivity]
-                if( 
-                    !is_dir($destination) 
-                ) mkdir("$destination", 0775, true);
+                if( !is_dir($to) ) mkdir("$to", 0775, true);
                 
                 // If is file push it
                 // else enter in folder and copy all files containing
-                if (!is_dir("$source/$file")) {
-                    copy("$source/$file", "$destination/$file");
+                if (!is_dir("$from/$file")) {
+                    // DON'T OVEWRITE FILE
+                    if( file_exists("$from/$file") )
+                        $this->info("[CHECK...] $file already exists...");
+                    else 
+                        copy("$from/$file", "$to/$file");
                 } else {
-                    $this->putFileInFolder(
-                        "$source/$file", "$destination/$file"
+                    $this->putContentInFolder(
+                        "$from/$file", "$to/$file"
                     );
                 }
             }
