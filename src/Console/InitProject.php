@@ -92,7 +92,6 @@ class InitProject extends Command {
         // Mettre a jour le contenu du fichier composer.json
         // Executer la commande `composer dump-autoload`
         file_put_contents(base_path('composer.json'), json_encode($json, JSON_PRETTY_PRINT) );
-        
 
         $this->info('Pubish ZDS resources files');
 
@@ -272,33 +271,29 @@ class InitProject extends Command {
 
     public function makeFirstPage()
     {
-        $tid = DB::table('templates')
-            ->insertGetId([
-                'name' => "Master",
-                'view' => "master"
-            ]);
-        $sid = DB::table('sections')
-            ->insertGetId([
-                'name' => "About",
-                'view' => "about",
-                "title" => "A propos de Woody Builder"
-            ]);
+        $tid = \App\Models\Template::firstOrCreate([
+            'name' => "Master",
+            'view' => "master"
+        ])->id;
 
-        $pid = DB::table('pages')
-            ->insertGetId([
-                'name' => "Home",
-                'slug' => "home",
-                "title" => "Woody Builder",
-                "template_id" => $tid
-            ]);
-        DB::table('page_sections')
-            ->insert(
-                [
-                    'page_id' => $pid,
-                    'section_id' => $sid,
-                    'rang' => 1
-                ]
-            );
+        $sid = \App\Models\Section::firstOrCreate([
+            'name' => "About",
+            'view' => "about",
+            "title" => "A propos de Woody Builder"
+        ])->id;
+
+        $pid = \App\Models\Page::firstOrCreate([
+            'name' => "Home",
+            'slug' => "home",
+            "title" => "Woody Builder",
+            "template_id" => $tid
+        ])->id;
+
+        \App\Models\PageSection::firstOrCreate([
+            'page_id' => $pid,
+            'section_id' => $sid,
+            'rang' => 1
+        ]);
     }
 
     protected function createUser($create = false)
