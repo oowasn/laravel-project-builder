@@ -52,7 +52,7 @@ class InitProject extends Command {
         
         $this->info('Set Application route to ZDS routes into routes/web.php');
         
-        if($filesystem->exists(base_path('routes/web.php')))
+        if($filesystem->exists(base_path('routes/init.php')))
             $this->info('[ROUTE] file routes/init.php already exists...');
         else {
             copy(__DIR__.'/../../stubs/default/routes/init.php', base_path('routes/init.php'));
