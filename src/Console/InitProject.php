@@ -25,14 +25,14 @@ class InitProject extends Command {
      *
      * @var string
      */
-    protected $signature = 'project:init';
+    protected $signature = 'project:builder';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Initialize project';
+    protected $description = 'Project builder by ZDS';
 
     /**
      * Create a new command instance.
