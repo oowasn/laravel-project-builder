@@ -199,7 +199,7 @@ class InitProject extends Command {
                 // dd($current_data_type);
                 foreach ($current_data_type as $row => $row_value) {
                     if ($row != 'data_rows') // if actual `row` is not `data_rows`, save that as a field in `data_type`
-                        $fill_data[$row] = $row_value;
+                        $fill_data[$row] = $row == 'details' ? json_decode($row_value, true) : $row_value;
                 }
 
                 $dataType->fill($fill_data)->save();
