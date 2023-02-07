@@ -1,6 +1,6 @@
 {
     "name": "geeksceo/laravel-project-builder",
-    "description": "Begin usualy a Laravel project",
+    "description": "Build usualy a Laravel project",
     "license": "MIT",
     "version": "2.0.0",
     "autoload": {
