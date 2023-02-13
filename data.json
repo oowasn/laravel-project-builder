@@ -421,7 +421,7 @@
                         "order": 1
                     },
                     {
-                        "field": "titre",
+                        "field": "title",
                         "type": "text",
                         "display_name": "Titre",
                         "required": 1,
@@ -434,7 +434,7 @@
                         "order": 2
                     },
                     {
-                        "field": "soustitre",
+                        "field": "subtitle",
                         "type": "text",
                         "display_name": "Sous titre",
                         "required": 0,
