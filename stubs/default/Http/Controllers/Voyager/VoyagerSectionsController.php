@@ -81,6 +81,15 @@ class VoyagerSectionsController extends \TCG\Voyager\Http\Controllers\VoyagerBas
 
         event(new BreadDataAdded($dataType, $data));
 
+        if($data->view) {
+            $path = base_path("resources/views/sections");
+            mkdir($path, 0775, true);
+
+            file_put_contents(
+                "$path/$data->view.blade.php", $data->view
+            );
+        }
+
         if (!$request->has('_tagging')) {
             if (auth()->user()->can('browse', $data)) {
                 $redirect = redirect()->route("voyager.{$dataType->slug}.index");
