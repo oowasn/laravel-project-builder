@@ -258,6 +258,7 @@
                 "display_name_plural": "Sections",
                 "icon": "voyager-diamond",
                 "model_name": "App\\Models\\Section",
+                "controller": "App\\Http\\Controllers\\Voyager\\VoyagerSectionsController",
                 "description": "",
                 "generate_permissions": 1,
                 "server_side": 0,
