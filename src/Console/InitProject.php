@@ -2,7 +2,7 @@
 
 namespace ZDSLab\Init\Console;
 
-// Models 
+// Models
 use App\Models\{User,};
 use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
@@ -49,15 +49,15 @@ class InitProject extends Command {
         $this->info('Installing ZDSLab InitPackage...');
 
         $this->call('voyager:install');
-        
+
         $this->info('Set Application route to ZDS routes into routes/web.php');
-        
-        if($filesystem->exists(base_path('routes/init.php')))
-            $this->info('[ROUTE] file routes/init.php already exists...');
+
+        if($filesystem->exists(base_path('routes/builder.php')))
+            $this->info('[ROUTE] file routes/builder.php already exists...');
         else {
-            copy(__DIR__.'/../../stubs/default/routes/init.php', base_path('routes/init.php'));
+            copy(__DIR__.'/../../stubs/default/routes/builder.php', base_path('routes/builder.php'));
             $routes_contents = $filesystem->get(base_path('routes/web.php'));
-            $check = "require __DIR__.'/init.php';";
+            $check = "require __DIR__.'/builder.php';";
             if (false === strpos($routes_contents, $check)) {
                 $filesystem->append(
                     base_path('routes/web.php'),
@@ -69,7 +69,7 @@ class InitProject extends Command {
         $this->info('Pubish ZDS Controllers');
 
         $this->putContentInFolder(
-            __DIR__.'/../../stubs/default/Http/Controllers', 
+            __DIR__.'/../../stubs/default/Http/Controllers',
             app_path('Http/Controllers')
         );
 
@@ -98,23 +98,23 @@ class InitProject extends Command {
         $this->info('Pubish ZDS resources files');
 
         $this->putContentInFolder(
-            __DIR__.'/../../resources/views/', 
+            __DIR__.'/../../resources/views/',
             base_path('resources/views')
         );
 
         $this->info('Pubish ZDS models files');
 
         $this->putContentInFolder(
-            __DIR__.'/../../stubs/default/Models/', 
+            __DIR__.'/../../stubs/default/Models/',
             app_path('Models')
         );
 
         $this->initBread();
-                    
+
         // Create new user with admin privilege
         $create = $this->ask('Do you want to create a user ? (Yes => 1 | No => 0)');
         $this->createUser(boolval($create));
-        
+
         // Set login images
         $loginDir = "public/login-assets";
         // Create directory if not exists
@@ -186,7 +186,7 @@ class InitProject extends Command {
         $orders = $parentMenuItem->children->pluck('order')->toArray();
         $subItemOrder = !empty($orders) ? max($orders) : 1;
 
-        // save `data_types` locate in `data.json`  
+        // save `data_types` locate in `data.json`
         foreach ($data['voyager']['data_types'] as $current_data_type) {
             // `current_data_type` contents actual dataType value
 
@@ -234,7 +234,7 @@ class InitProject extends Command {
                     'url'     => null,
                     'route'   => 'voyager.' . $current_data_type['slug'] . '.index',
                 ]);
-        
+
                 if (!$menuItem->exists) {
                     $menuItem->fill([
                         'target'     => '_self',
@@ -356,14 +356,14 @@ class InitProject extends Command {
             if( !in_array($file, ['.', '..']) ) {
                 // Create destination folder if not exists [recursivity]
                 if( !is_dir($to) ) mkdir("$to", 0775, true);
-                
+
                 // If is file push it
                 // else enter in folder and copy all files containing
                 if (!is_dir("$from/$file")) {
                     // DON'T OVEWRITE FILE
                     if( file_exists("$to/$file") )
                         $this->info("[CHECK...] $file already exists...");
-                    else 
+                    else
                         copy("$from/$file", "$to/$file");
                 } else {
                     $this->putContentInFolder(

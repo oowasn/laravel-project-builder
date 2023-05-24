@@ -17,6 +17,7 @@ class DataController extends BaseController
     public static function index(){
         return self::makePage('home');
     }
+
     public static function makePage($slug = NULL){
         $slug = $slug ?? 'home';
         $query = Page::with(
@@ -60,15 +61,15 @@ class DataController extends BaseController
         $data['tabSection'] = $page['sections'] ?? [];
         $data['data'] = self::getData($data['tabSection']);
         $data['tabSection'] = Arr::keyBy($data['tabSection'], 'view');
-        
+
         return view('page', $data);
     }
-        
+
     public static function getSlider(){
         return self::arrayByKey(Slider::with('boutons')->where('active', true)
             ->orderBy('rang', 'ASC')->get()->toArray());
     }
-    
+
     public static function getData(array $sections): array {
         $data = [];
         foreach($sections AS $section):
@@ -102,7 +103,7 @@ class DataController extends BaseController
         if(!$key):
             return $array;
         endif;
-        
+
         $data = [];
         foreach($array AS $k => $r):
             if(array_key_exists($key, $r)):
@@ -111,7 +112,7 @@ class DataController extends BaseController
                 $data[$k] = $r;
             endif;
         endforeach;
-        
+
         return $data;
     }
 }
