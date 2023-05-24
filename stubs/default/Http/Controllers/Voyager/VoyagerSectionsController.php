@@ -98,13 +98,11 @@ class VoyagerSectionsController extends \TCG\Voyager\Http\Controllers\VoyagerBas
         event(new BreadDataAdded($dataType, $data));
 
         if($data->view) {
-
             $path = base_path("resources/views/sections");
             if (!is_dir($path)) mkdir($path, 0775, true);
 
-            file_put_contents(
-                "$path/$data->view.blade.php", $data->view
-            );
+            if( !file_exists($path. '/'.$data->view.'.blade.php') )
+                file_put_contents("$path/$data->view.blade.php", $data->view);
         }
 
         if (!$request->has('_tagging')) {
