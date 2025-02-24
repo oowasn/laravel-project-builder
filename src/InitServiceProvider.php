@@ -1,9 +1,9 @@
 <?php
 
-namespace Zdslab\Laravelinit;
+namespace ZDSLab\Init;
 
 use Illuminate\Support\ServiceProvider;
-use Zdslab\Laravelinit\Console\InitProject;
+use ZDSLab\Init\Console\InitProject;
 
 class InitServiceProvider extends ServiceProvider
 {
@@ -16,22 +16,31 @@ class InitServiceProvider extends ServiceProvider
         // Register the command if we are using the application via the CLI
         if ($this->app->runningInConsole()) {
             $this->commands([
-                InitProject::class,
+                InitProject::class
             ]);
+
+            // config file
+            $this->publishes([
+                __DIR__.'/../config/config.php' => config_path('init.php'),
+              ], 'config'
+            );
         }
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/../publishable/resources/views', 'init');
+
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'init');
     }
 
     public function register() {
-        $this->registerPublishables();
-        $this->loadHelpers();
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'init');
+        /* $this->registerPublishables();
+        $this->loadHelpers(); */
     }
 
     private function registerPublishables()
     {
-        $publishablePath = dirname(__DIR__).'/publishable';
+        /* $publishablePath = dirname(__DIR__).'/publishable';
 
         $publishable = [
             'login-assets' => [
@@ -41,14 +50,14 @@ class InitServiceProvider extends ServiceProvider
 
         foreach ($publishable as $group => $paths) {
             $this->publishes($paths, $group);
-        }
+        } */
     }
 
     protected function loadHelpers()
     {
-        foreach (glob(__DIR__.'/Helpers/*.php') as $filename) {
+        /* foreach (glob(__DIR__.'/Helpers/*.php') as $filename) {
             require_once $filename;
-        }
+        } */
     }
 
 

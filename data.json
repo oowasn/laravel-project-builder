@@ -2,12 +2,12 @@
     "voyager": {
         "data_types": [
             {
-                "name": "boutons",
-                "slug": "boutons",
+                "name": "buttons",
+                "slug": "buttons",
                 "display_name_singular": "Bouton",
                 "display_name_plural": "Boutons",
                 "icon": "voyager-medal-rank-star",
-                "model_name": "App\\Models\\Bouton",
+                "model_name": "App\\Models\\Button",
                 "description": "",
                 "generate_permissions": 1,
                 "server_side": 0,
@@ -145,7 +145,7 @@
                         "order": 2
                     },
                     {
-                        "field": "vue",
+                        "field": "view",
                         "type": "text",
                         "display_name": "Vue",
                         "required": 1,
@@ -258,6 +258,7 @@
                 "display_name_plural": "Sections",
                 "icon": "voyager-diamond",
                 "model_name": "App\\Models\\Section",
+                "controller": "App\\Http\\Controllers\\Voyager\\VoyagerSectionsController",
                 "description": "",
                 "generate_permissions": 1,
                 "server_side": 0,
@@ -290,7 +291,7 @@
                         "order": 2
                     },
                     {
-                        "field": "vue",
+                        "field": "view",
                         "type": "text",
                         "display_name": "Vue",
                         "required": 1,
@@ -421,7 +422,7 @@
                         "order": 1
                     },
                     {
-                        "field": "titre",
+                        "field": "title",
                         "type": "text",
                         "display_name": "Titre",
                         "required": 1,
@@ -434,7 +435,7 @@
                         "order": 2
                     },
                     {
-                        "field": "soustitre",
+                        "field": "subtitle",
                         "type": "text",
                         "display_name": "Sous titre",
                         "required": 0,
@@ -549,7 +550,7 @@
                         "add": 0,
                         "delete": 0,
                         "details": "{}",
-                        "order": 1
+                        "order": 9
                     },
                     {
                         "field": "template_id",
@@ -641,6 +642,31 @@
                         "delete": 0,
                         "details": "{}",
                         "order": 8
+                    },
+                    {
+                        "field": "page_belongstomany_section_relationship",
+                        "type": "relationship",
+                        "display_name": "sections",
+                        "required": "0",
+                        "browse": "1",
+                        "read": "1",
+                        "edit": "1",
+                        "add": "1",
+                        "delete": "1",
+                        "details": "{\"model\":\"App\\\\Models\\\\Section\",\"table\":\"sections\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"page_sections\",\"pivot\":\"1\",\"taggable\":\"0\"}",
+                        "order": "10"
+                    }, {
+                        "field": "page_belongsto_template_relationship",
+                        "type": "relationship",
+                        "display_name": "Template",
+                        "required": "0",
+                        "browse": "1",
+                        "read": "1",
+                        "edit": "1",
+                        "add": "1",
+                        "delete": "1",
+                        "details": "{\"display\":{\"width\":\"3\"},\"model\":\"App\\\\Models\\\\Template\",\"table\":\"templates\",\"type\":\"belongsTo\",\"column\":\"template_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"button_slider\",\"pivot\":\"0\",\"taggable\":\"0\"}",
+                        "order": "1"
                     }
                 ]
             },

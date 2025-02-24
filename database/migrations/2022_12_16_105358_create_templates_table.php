@@ -16,7 +16,7 @@
             Schema::create('templates', function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->unique('template_name');
-                $table->string('vue');
+                $table->string('view');
                 $table->timestamps();
             });
         }

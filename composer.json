@@ -1,6 +1,8 @@
 {
-    "name": "geeksceo/laravelinit",
-    "description": "Begin usualy a Laravel project",
+    "name": "geeksceo/laravel-project-builder",
+    "description": "Build usualy a Laravel project",
+    "license": "MIT",
+    "version": "2.0.0",
     "autoload": {
         "psr-4": {
             "ZDSLab\\Init\\": "src/"
@@ -12,6 +14,10 @@
             "email": "j.estellekoffi@gmail.com"
         },
         {
+            "name": "Adama TUO",
+            "email": "tuoadama17@gmail.com"
+        },
+        {
             "name": "ZEZE Djedje Sylvain",
             "email": "s.zeze@vzsite.com"
         },
@@ -20,5 +26,19 @@
             "email": "oowashina@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require": {
+        "tcg/voyager": "1.6.x-dev"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "9.6.x-dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ZDSLab\\Init\\InitServiceProvider"
+            ]
+        }
+    }
 }
