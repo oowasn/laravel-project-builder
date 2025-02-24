@@ -1,5 +1,5 @@
 {
-    "name": "geeksceo/laravel-project-builder",
+    "name": "oowasn/laravel-project-builder",
     "description": "Build usualy a Laravel project",
     "license": "MIT",
     "version": "2.0.0",
@@ -22,8 +22,8 @@
             "email": "s.zeze@vzsite.com"
         },
         {
-            "name": "Nataniel OWAGOKE @geeksceo",
-            "email": "oowashina@gmail.com"
+            "name": "Nataniel O.",
+            "email": "oowasn@gmx.com"
         }
     ],
     "minimum-stability": "dev",
